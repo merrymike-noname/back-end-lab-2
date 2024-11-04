@@ -1,25 +1,31 @@
 package com.kovalenko.backendlab2.service;
 
 import com.kovalenko.backendlab2.entity.User;
+import com.kovalenko.backendlab2.exception.UserNotFoundException;
+import com.kovalenko.backendlab2.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
+    private final UserRepository userRepository;
+
     public User findById(int id) {
-        return new User("name");
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("No user with id " + id));
     }
 
     public List<User> findAll() {
-        return List.of(new User("name"));
+        return userRepository.findAll();
     }
 
     public User save(User user) {
-        return user;
+        return userRepository.save(user);
     }
 
     public void delete(int id) {
-        System.out.println("user was deleted");
+        userRepository.delete(id);
     }
 }

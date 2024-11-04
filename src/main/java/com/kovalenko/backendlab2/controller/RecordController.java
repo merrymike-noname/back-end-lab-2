@@ -9,22 +9,21 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/record")
 @RequiredArgsConstructor
 public class RecordController {
     private final RecordService recordService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/record/{id}")
     public Record getRecordById(@PathVariable("id") int id) {
         return recordService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/record")
     public Record saveRecord(@RequestBody Record record) {
         return recordService.save(record);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/record/{id}")
     public void deleteRecord(@PathVariable("id") int id) {
         recordService.delete(id);
     }
