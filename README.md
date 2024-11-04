@@ -25,4 +25,4 @@ The service is deployed on https://render.com
 
 To access it go to:
 
-[https://back-end-lab-1.onrender.com/healthcheck](https://back-end-lab-2.onrender.com)
+https://back-end-lab-2.onrender.com
