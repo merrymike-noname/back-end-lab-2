@@ -2,7 +2,10 @@ package com.kovalenko.backendlab2.controller;
 
 import com.kovalenko.backendlab2.entity.User;
 import com.kovalenko.backendlab2.service.UserService;
+import com.kovalenko.backendlab2.util.BindingResultValidator;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final BindingResultValidator validator;
 
     @GetMapping("/user/{id}")
     public User getUserById(@PathVariable("id") int id) {
@@ -23,7 +27,8 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public User saveUser(@RequestBody User user) {
+    public User saveUser(@Valid @RequestBody User user, BindingResult bindingResult) {
+        validator.validate(bindingResult);
         return userService.save(user);
     }
 

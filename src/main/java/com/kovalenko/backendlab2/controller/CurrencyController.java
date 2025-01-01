@@ -2,7 +2,10 @@ package com.kovalenko.backendlab2.controller;
 
 import com.kovalenko.backendlab2.entity.Currency;
 import com.kovalenko.backendlab2.service.CurrencyService;
+import com.kovalenko.backendlab2.util.BindingResultValidator;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/currency")
 public class CurrencyController {
     private final CurrencyService currencyService;
+    private final BindingResultValidator validator;
 
     @GetMapping("/{id}")
     public Currency getCurrencyById(@PathVariable("id") int id) {
@@ -22,7 +26,8 @@ public class CurrencyController {
     }
 
     @PostMapping
-    public Currency saveCurrency(@RequestBody Currency currency) {
+    public Currency saveCurrency(@Valid @RequestBody Currency currency, BindingResult bindingResult) {
+        validator.validate(bindingResult);
         return currencyService.save(currency);
     }
 

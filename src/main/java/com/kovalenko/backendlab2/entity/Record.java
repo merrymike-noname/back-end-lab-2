@@ -32,7 +32,6 @@ public class Record {
     @JoinColumn(name = "currency_id", nullable = false)
     private Currency currency;
 
-    @NotNull(message = "CreatedAt is mandatory")
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 

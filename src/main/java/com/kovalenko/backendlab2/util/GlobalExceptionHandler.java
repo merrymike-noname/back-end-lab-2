@@ -3,6 +3,7 @@ package com.kovalenko.backendlab2.util;
 import com.kovalenko.backendlab2.entity.ErrorResponse;
 import com.kovalenko.backendlab2.exception.EmptyParametersException;
 import com.kovalenko.backendlab2.exception.EntityNotFoundException;
+import com.kovalenko.backendlab2.exception.InvalidDataException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -30,6 +31,19 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EmptyParametersException.class)
     public ResponseEntity<ErrorResponse> handleFieldDoesNotExistException
             (EmptyParametersException e, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                e.getMessage(),
+                ((ServletWebRequest) request).getRequest().getRequestURI()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidDataException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidDataException
+            (InvalidDataException e, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(),
                 HttpStatus.BAD_REQUEST.value(),
