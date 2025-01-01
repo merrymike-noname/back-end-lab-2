@@ -24,13 +24,13 @@ public class RecordService {
     }
 
     public void delete(int id) {
-        recordRepository.delete(id);
+        recordRepository.deleteById(id);
     }
 
     public List<Record> filterRecords(Optional<Integer> userId, Optional<Integer> categoryId) {
         if (userId.isEmpty() && categoryId.isEmpty()) {
             throw new EmptyParametersException("Both filter parameters are empty");
         }
-        return recordRepository.filterRecords(userId, categoryId);
+        return recordRepository.filterRecords(userId.orElse(null), categoryId.orElse(null));
     }
 }
