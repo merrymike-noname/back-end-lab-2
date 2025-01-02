@@ -1,6 +1,8 @@
-# Back-end Lab2
+# Back-end Lab3
 
-This is a demo lab project which demonstrates default CRUD operations.
+**Variant 1 (22 % 3 = 1): Currency entity**
+
+This is a demo lab project which demonstrates default CRUD operations with ORM and Validation.
 
 The project is written on **Java (Spring Framework)**.
 
@@ -19,10 +21,3 @@ docker compose up
 ```
 This will build an image and run a container.
 
-## Deploy
-
-The service is deployed on https://render.com
-
-To access it go to:
-
-https://back-end-lab-2.onrender.com
