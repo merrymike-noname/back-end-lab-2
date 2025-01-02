@@ -25,12 +25,7 @@ public class SecurityConfig {
             throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/category/**").permitAll()
-                        .requestMatchers("/currency/**").permitAll()
-                        .requestMatchers("/record/**").permitAll()
-                        .requestMatchers("/records/").permitAll()
-                        .requestMatchers("/user/**").permitAll()
-                        .requestMatchers("/users").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
