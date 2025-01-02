@@ -1,8 +1,9 @@
-# Back-end Lab3
+# Back-end Lab4
 
 **Variant 1 (22 % 3 = 1): Currency entity**
 
 This is a demo lab project which demonstrates default CRUD operations with ORM and Validation.
+The app is now working with JWT authentication and registration
 
 The project is written on **Java (Spring Framework)**.
 
